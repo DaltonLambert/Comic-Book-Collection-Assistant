@@ -19,7 +19,7 @@
     
     <div class="picture">
       <h2>Latest Issue</h2>
-      <img src="https://i.annihil.us/u/prod/marvel/i/mg/3/b0/61d4c518767b4/clean.jpg" alt="Marvel Comic Heroes" />
+      <img src="http://i.annihil.us/u/prod/marvel/i/mg/6/20/5b464dc1c4517/clean.jpg" alt="Marvel Comic Heroes" />
     </div>
 
     <div class="featured-collection">
@@ -86,9 +86,7 @@ div.home {
     "featured-collection featured-collection"
     ;
     
-
 }
-
 div.title {
   grid-area: title;
   text-align: center;
@@ -99,21 +97,17 @@ div.title {
   font-size: 20px;
   height: 200px;
 }
-
 div.statistics {
   grid-area: statistics;
   border: 2px solid black;
   margin: 10px 10px 10px 10px;
   font-family: monospace, serif;
-
 }
-
 div.picture {
   grid-area: picture;
   margin: 10px 10px 10px 10px;
   border: 2px solid black;
 }
-
 div.featured-collection {
   grid-area: featured-collection;
   
@@ -121,12 +115,10 @@ div.featured-collection {
   font-family: monospace, serif;
    border: 2px solid black;
 }
-
 div.featured-collection h2 {
   text-align: center;
  
 }
-
 /* this will style the image itself. currently it is centering the image. might not be necessary*/
 div.picture img {
   display: block;
@@ -134,7 +126,6 @@ div.picture img {
   margin-right: auto;
   width: 75%;
 }
-
 div.statistics {
   grid-area: statistics;
   
@@ -148,31 +139,25 @@ div.statistics {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   
 }
-
 .comic-book-icon {
   height: 50px;
   width: 50px;
    vertical-align: middle;
 }
-
-
 li {
 margin: 10px 0;
 padding: 10px 0;
 list-style-type: none;
 margin-right: 210px;
 }
-
 h2 {
 text-align: center;
 font-family: monospace, serif;
 text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
-
 .picture > img:hover {
     box-shadow: 0 0 20px 10px #2F4858;
   }
-
   .statistics {
   background-image: url('https://4kwallpapers.com/images/wallpapers/spider-man-marvel-superheroes-red-background-marvel-comics-2560x2560-7494.jpg');
   background-size: cover;
@@ -180,8 +165,5 @@ text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   color: #fff;
   
 }
-
-
-
 </style>
 

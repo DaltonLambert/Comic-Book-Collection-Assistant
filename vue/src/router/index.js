@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import Comics from '../views/Comics.vue'
 import Profile from '../views/Profile.vue'
 import store from '../store/index'
+import ComicsAPI from '../views/ComicsAPI.vue'
 
 Vue.use(Router)
 
@@ -73,7 +74,15 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
-    }
+    },
+    {
+      path: "/comicsAPI",
+      name: "comicsAPI",
+      component: ComicsAPI,
+      meta: {
+        requiresAuth: false
+      }
+    },
   ]
 })
 

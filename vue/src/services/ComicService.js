@@ -53,7 +53,10 @@ export default {
 
   getComicsInCollection(collectionId) {
     return http.get(`/comic/collection/${collectionId}`);
-}
+},
+
+
+
 
 
 

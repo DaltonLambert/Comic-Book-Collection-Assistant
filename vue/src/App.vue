@@ -9,7 +9,8 @@
           <router-link v-bind:to="{ name: 'comics' }" class="router-link-nav">Comics</router-link>&nbsp;&nbsp;
           <router-link v-bind:to="{ name: 'login' }"  class="router-link-nav">Login</router-link>&nbsp;&nbsp;
           <router-link v-bind:to="{ name: 'profile' }" v-if="$store.state.token != ''" class="router-link-nav">Profile</router-link>&nbsp;&nbsp;
-          <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''" class="router-link-nav">Logout</router-link>
+          <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''" class="router-link-nav">Logout</router-link>&nbsp;&nbsp;
+          <router-link v-bind:to="{ name: 'comicsAPI' }" v-if="$store.state.token != ''" class="router-link-nav">ComicsAPI</router-link>
         </div>
       </header>
       
