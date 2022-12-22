@@ -1,13 +1,14 @@
 <template>
   <div class="container">
     <!-- Sidebar -->
+    <div class="fixed-sidebar" style="z-index: 2">
     <div class="sidebar">
       <h2 class="collection-title">Collections</h2>
       <div class="new-collection-button" @click="createNewCollection">
         <div class="plus-sign">+</div>
         <div class="button-label">Create New Collection</div>
       </div>
-      <div v-if="showPopup" class="popup">
+      <div v-if="showPopup" class="popup" style="z-index: 1" >
         <div class="popup-header">Enter A Name For Your Collection</div>
         <form class="collection-form" @submit.prevent="submitCollectionName">
           <input type="text" v-model="collectionName" placeholder="Collection Name">
@@ -17,7 +18,8 @@
      
 
       <div v-for="(collection, index) in collections" :key="index" class="collection" @dragover.prevent @drop="drop($event, collection)" @click="openPopup(collection)" >
-        <div class="collection-name">{{ collection.name }}</div>
+        <div class="collection-name">{{ collection.name }} ({{ collection.count }})</div>
+      </div>
       </div>
     </div>
 
@@ -36,11 +38,12 @@
     </div>
 
 
-    <div v-if="showCollectionPopup" class="popup">
+    <div v-if="showCollectionPopup" class="collectionPopup">
   <div class="popup-header">Comics in Collection: {{ selectedCollection.name }}</div>
+  <button @click="closePopup">X</button>
   <div class="comic-list">
     <div v-for="(comic, index) in selectedCollection.comics" :key="index" class="comic">
-      {{ comic.title }} (Issue #{{ comic.issueNumber }})
+      <img :src="comic.thumbnail.path + '.' + comic.thumbnail.extension" alt="Comic book thumbnail"> 
     </div>
   </div>
 </div>
@@ -100,7 +103,7 @@ flip: false,
       this.showPopup = true;
     },
     submitCollectionName() {
-      this.collections.push({ name: this.collectionName, comics: [] });
+      this.collections.push({ name: this.collectionName, comics: [], count: 0 });
       this.showPopup = false;
       this.collectionName = '';
     },
@@ -110,11 +113,15 @@ flip: false,
   drop(event, collection) {
     const comic = JSON.parse(event.dataTransfer.getData('comic'));
     collection.comics.push(comic);
+    collection.count++;
   },
   openPopup(collection) {
     this.selectedCollection = collection;
     this.showCollectionPopup = true;
   },
+  closePopup() {
+      this.showCollectionPopup = false;
+    },
   },
 };
 </script>
@@ -170,8 +177,8 @@ flip: false,
   font-family: Arial, sans-serif;
   margin: 0;
   text-align: center;
-  overflow-wrap: break-word; /* wrap text if it is too long to fit on one line */
-  word-wrap: break-word; /* same as above */
+  overflow-wrap: break-word;
+  word-wrap: break-word; 
 }
 
 .issueNumber {
@@ -179,8 +186,8 @@ flip: false,
   font-family: Arial, sans-serif;
   margin: 0;
   text-align: center;
-  overflow-wrap: break-word; /* wrap text if it is too long to fit on one line */
-  word-wrap: break-word; /* same as above */
+  overflow-wrap: break-word;
+  word-wrap: break-word; 
 }
 
 .description {
@@ -188,8 +195,8 @@ flip: false,
   font-family: Arial, sans-serif;
   margin: 0;
   text-align: center;
-  overflow-wrap: break-word; /* wrap text if it is too long to fit on one line */
-  word-wrap: break-word; /* same as above */
+  overflow-wrap: break-word; 
+  word-wrap: break-word; 
 }
 
 .container {
@@ -198,15 +205,15 @@ flip: false,
 }
 
 .sidebar {
-  flex: 0 0 25%; /* This will set the width of the sidebar to 25% of the container */
-  height: 100%; /* This will make the sidebar the same height as the container */
-  order: 2; /* This will move the sidebar to the right side of the main area */
+  flex: 0 0 25%; 
+  height: 100%; 
+  order: 2; 
 }
 
 .main-area {
-  flex: 0 0 75%; /* This will set the width of the main area to 75% of the container */
-  height: 100%; /* This will make the main area the same height as the container */
-  order: 1; /* This will move the main area to the left side of the sidebar */
+  flex: 0 0 75%; 
+  height: 100%;
+  order: 1; 
 }
 
 .collection-title {
@@ -242,23 +249,9 @@ flip: false,
     text-transform: uppercase;
   }
 
-  .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
-  .popup-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
+
+  
 
   .collection-form {
     display: flex;
@@ -302,6 +295,61 @@ flip: false,
     text-transform: uppercase;
   }
 
+  .collectionPopup,
+.popup {
+  background-color: #ccc;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 70%;
+  height: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.collectionPopup .popup-header,
+.popup .popup-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.collectionPopup .comic-list,
+.popup .collection-form {
+  width: 80%;
+  height: 80%;
+  overflow: scroll;
+}
+
+.collectionPopup .comic,
+.popup .collection {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.collectionPopup .comic-list {
+  /* Add a flex layout to the comic-list element */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.collectionPopup .comic {
+  /* Add some additional styling to the comics in the collection */
+  width: 10%; /* Adjust the width of the comics to control how they are laid out */
+  margin: 10px;
+}
+
+.fixed-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  /* Other styles for the fixed sidebar here */
+  right: 0;
+}
 </style>
 
 
