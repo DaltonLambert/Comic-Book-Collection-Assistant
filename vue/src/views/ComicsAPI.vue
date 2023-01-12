@@ -103,7 +103,7 @@ flip: false,
       this.showPopup = true;
     },
     submitCollectionName() {
-      this.collections.push({ name: this.collectionName, comics: [], count: 0 });
+      this.collections.push({ name: this.collectionName, comics: [], count: 0, });
       this.showPopup = false;
       this.collectionName = '';
     },
@@ -114,6 +114,7 @@ flip: false,
     const comic = JSON.parse(event.dataTransfer.getData('comic'));
     collection.comics.push(comic);
     collection.count++;
+    
   },
   openPopup(collection) {
     this.selectedCollection = collection;
