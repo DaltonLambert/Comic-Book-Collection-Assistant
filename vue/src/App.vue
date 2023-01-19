@@ -27,6 +27,7 @@
 </template>
 
 <script>
+const apiKey = require('./config');
 import FooterBox from './components/FooterBox.vue'
 
 
@@ -41,7 +42,8 @@ export default {
     }
   },
   mounted() {
-    const endpoint = "http://gateway.marvel.com/v1/public/comics?limit=100&apikey=4d4fb7a8ee589aa8a41ea7bac53ff77c&ts=1671576398321&hash=dd5a754afd936ea1557909caf99bab72";
+    
+      const endpoint = "https://gateway.marvel.com/v1/public/comics?limit=100&apikey=" + apiKey + "&ts=1671576398321&hash=dd5a754afd936ea1557909caf99bab72";
 
     fetch(endpoint)
       .then(response => {

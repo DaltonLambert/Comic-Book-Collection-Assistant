@@ -12,7 +12,12 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.9.1",
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1",
+    "fs-extra": "^11.1.0",
     "md5": "^2.3.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "vue": "^2.6.12",
     "vue-resource": "^1.5.3",
     "vue-router": "^3.5.1",
