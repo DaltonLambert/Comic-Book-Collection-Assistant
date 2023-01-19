@@ -6,11 +6,11 @@
         <div id="nav">
           <router-link v-bind:to="{ name: 'home' }" class="router-link-nav">Home</router-link>&nbsp;&nbsp;
           <router-link v-bind:to="{ name: 'register' }" class="router-link-nav">Register</router-link>&nbsp;&nbsp;
-          <router-link v-bind:to="{ name: 'comics' }" class="router-link-nav">Comics</router-link>&nbsp;&nbsp;
+          <router-link v-bind:to="{ name: 'comics' }" v-if="apiIsDown" class="router-link-nav">Comics</router-link>&nbsp;&nbsp;
           <router-link v-bind:to="{ name: 'login' }"  class="router-link-nav">Login</router-link>&nbsp;&nbsp;
           <router-link v-bind:to="{ name: 'profile' }" v-if="$store.state.token != ''" class="router-link-nav">Profile</router-link>&nbsp;&nbsp;
           <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''" class="router-link-nav">Logout</router-link>&nbsp;&nbsp;
-          <router-link v-bind:to="{ name: 'comicsAPI' }" v-if="$store.state.token != ''" class="router-link-nav">ComicsAPI</router-link>
+          <router-link v-bind:to="{ name: 'comicsAPI' }" v-if="!apiIsDown && $store.state.token != ''" class="router-link-nav">ComicsAPI</router-link>
         </div>
       </header>
       
@@ -34,7 +34,27 @@ export default {
   name: 'app',
   components: {
     FooterBox
+  },
+  data() {
+    return {
+      apiIsDown: false,
+    }
+  },
+  mounted() {
+    const endpoint = "http://gateway.marvel.com/v1/public/comics?limit=100&apikey=4d4fb7a8ee589aa8a41ea7bac53ff77c&ts=1671576398321&hash=dd5a754afd936ea1557909caf99bab72";
+
+    fetch(endpoint)
+      .then(response => {
+        if (!response.ok) {
+          this.apiIsDown = true;
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        this.apiIsDown = true;
+      });
   }
+
 }
 </script>
 

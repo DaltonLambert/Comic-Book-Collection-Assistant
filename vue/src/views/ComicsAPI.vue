@@ -63,7 +63,7 @@ export default {
       collectionName: '',
       collections: [],
       selectedCollection: null,
-    showCollectionPopup: false,
+      showCollectionPopup: false,
     };
   },
 
@@ -80,15 +80,15 @@ export default {
       .then(data => {
         for (const comic of data.data.results) {
           if (comic.thumbnail.path !== "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" && comic.images.length > 0) {
-this.comics.push({
-title: comic.title,
-issueNumber: comic.issueNumber,
-description: comic.description,
-thumbnail: comic.thumbnail,
-flip: false,
-});
-}
-}
+                this.comics.push({
+                title: comic.title,
+                issueNumber: comic.issueNumber,
+                description: comic.description,
+                thumbnail: comic.thumbnail,
+                flip: false,
+                });
+                    }
+                    }
      // split comics into rows of 6 comics
      while (this.comics.length > 0) {
       this.rows.push(this.comics.splice(0, 5));

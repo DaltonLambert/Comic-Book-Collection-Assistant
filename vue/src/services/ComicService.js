@@ -55,15 +55,6 @@ export default {
     return http.get(`/comic/collection/${collectionId}`);
 },
 
-
-
-
-
-
-
-  
-
-  
 }
 
 
