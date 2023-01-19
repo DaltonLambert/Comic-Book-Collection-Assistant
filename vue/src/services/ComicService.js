@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //not sure if we need to make a http = axios.create statement like greg does in his video. there's something in here where the baseURL is built in i think? question for david?
-//timestamp in video is 1h35min ish
+//timestamp in video is 1h35min ish 
 /*
 const http = axios.create({
     baseURL: "http://localhost:9000"
