@@ -1,5 +1,7 @@
-# Final Capstone
-​
-This directory contains all of the starter projects for the final capstone.
-​
-Each project contains instructions that provides information about the starting code and explains how to get started with the final capstone project.
+The Comic Book Collection Assistant is a web application that allows users to manage their comic book collections online. The project is broken down into two main parts: the frontend and the backend.
+
+The frontend is developed using Vue.js, a JavaScript framework which enables users to view and interact with their collections by utilizing a single-page application with a responsive user interface. Users can view the details of each comic such as the title, author and description, as well as name and create their own collections to hold their favorite comic books. The application also integrates with the Marvel API to provide additional comic book information, but in case the API is down, it falls back to the data stored in the database. This feature allows for a seamless user experience and ensures that the application will always be able to provide necessary information to the user.
+
+The backend of the project is built using Java and the Spring Framework. The application includes several Restful API endpoints which are exposed to the frontend, includes data access objects (DAOs) for the users, comics and collections, allowing for the storage and retrieval of data from the PostgreSQL database by connecting to it through Spring. It also includes a user authentication system by implementing Spring Security when users register and login to the application. The backend is responsible for generating statistics such as the number of comics, collections and authors that exist.
+
+Overall, the Comic Book Collection Assistant is a nifty tool for comic book enthusiasts to easily manage their collections. The application is easy to use, allows users to select from a wide variety of comics and provides users with an overview of their personal collections. New features will be added in the future, such as the ability for users to trade comics with one another, show off their collections to their friends and family on their favorite social media pages.
